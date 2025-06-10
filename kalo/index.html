@@ -19,8 +19,9 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      overflow: hidden;
+      min-height: 100vh;
+      overflow-y: auto;
+      scroll-behavior: smooth;
       background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%);
       position: relative;
     }
@@ -48,7 +49,7 @@
       grid-template-columns: 1fr;
       gap: 2rem;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
