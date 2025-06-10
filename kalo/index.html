@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KALO</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
   <style>
     * {
       margin: 0;
@@ -22,27 +23,56 @@
       min-height: 100vh;
       overflow-y: auto;
       scroll-behavior: smooth;
-      background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%);
       position: relative;
     }
-    body::before {
-      content: '';
+    #particles-js {
       position: absolute;
       top: 0;
       left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      mix-blend-mode: overlay;
+      opacity: 0.2;
+      animation: float 15s ease-in-out infinite;
       pointer-events: none;
+    }
+    .blob1 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+      top: 10%;
+      left: 15%;
+      animation-delay: 0s;
+    }
+    .blob2 {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(200, 200, 200, 0.25), transparent);
+      bottom: 20%;
+      right: 10%;
+      animation-delay: 5s;
+    }
+    .blob3 {
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(180, 180, 180, 0.2), transparent);
+      top: 50%;
+      left: 80%;
+      animation-delay: 10s;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-50px) scale(1.1); }
     }
     .container {
       max-width: 1200px;
       padding: 2rem;
       text-align: center;
-      opacity: 0;
-      animation: fadeIn 0.8s ease forwards 1s;
       position: relative;
       z-index: 1;
       display: grid;
@@ -51,30 +81,12 @@
       align-items: center;
       min-height: 100vh;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
     .logo-container {
       position: relative;
       width: 120px;
       height: 120px;
       margin: 0 auto;
-      opacity: 0;
-      animation: logoReveal 1s ease forwards 0.5s;
       filter: brightness(0.9) contrast(1.1);
-    }
-    @keyframes logoReveal {
-      0% { 
-        opacity: 0;
-        transform: scale(0.8) rotate(-10deg);
-        filter: brightness(0.5) contrast(1.2);
-      }
-      100% { 
-        opacity: 1;
-        transform: scale(1) rotate(0);
-        filter: brightness(0.9) contrast(1.1);
-      }
     }
     .logo {
       width: 100%;
@@ -105,6 +117,15 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    .typewriter.glitch {
+      animation: glitch 3s infinite;
+    }
+    @keyframes glitch {
+      0% { transform: translate(0); opacity: 1; }
+      2% { transform: translate(-2px, 2px); opacity: 0.8; }
+      4% { transform: translate(2px, -2px); opacity: 1; }
+      6% { transform: translate(0); opacity: 1; }
+    }
     .typewriter::after {
       content: '|';
       position: absolute;
@@ -121,8 +142,6 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       width: 100%;
-      opacity: 0;
-      animation: fadeIn 0.8s ease forwards 1.5s;
     }
     .feature {
       background: rgba(255, 255, 255, 0.03);
@@ -133,19 +152,13 @@
       overflow: hidden;
       backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.05);
-      transform: translateY(20px);
-      opacity: 0;
-      animation: featureReveal 0.8s ease forwards;
     }
-    @keyframes featureReveal {
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+    .feature:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
     }
-    .feature:nth-child(1) { animation-delay: 1.7s; }
-    .feature:nth-child(2) { animation-delay: 1.9s; }
-    .feature:nth-child(3) { animation-delay: 2.1s; }
     .feature::before {
       content: '';
       position: absolute;
@@ -156,11 +169,6 @@
       background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
       transform: translateX(-100%);
       transition: transform 0.6s ease;
-    }
-    .feature:hover {
-      transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
     }
     .feature:hover::before {
       transform: translateX(100%);
@@ -207,10 +215,14 @@
       text-decoration: none;
       display: inline-block;
       box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
-      opacity: 0;
-      animation: fadeIn 0.8s ease forwards 2.3s;
       position: relative;
       overflow: hidden;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1); }
+      50% { box-shadow: 0 4px 30px rgba(255, 255, 255, 0.2); }
+      100% { box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1); }
     }
     .button::before {
       content: '';
@@ -225,7 +237,7 @@
     }
     .button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.25);
     }
     .button:hover::before {
       transform: translateX(100%);
@@ -245,37 +257,72 @@
         width: 100px;
         height: 100px;
       }
+      .blob1, .blob2, .blob3 { width: 150px; height: 150px; }
     }
   </style>
 </head>
 <body>
+  <div id="particles-js"></div>
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
   <div class="container">
-    <div class="logo-container">
+    <div class="logo-container" data-aos="zoom-in" data-aos-delay="200">
       <img src="img/logo.png" alt="KALO Logo" class="logo">
     </div>
-    <div class="typewriter-container">
+    <div class="typewriter-container" data-aos="fade-up" data-aos-delay="400">
       <div class="typewriter" id="typewriter"></div>
     </div>
     
     <div class="features">
-      <div class="feature">
+      <div class="feature" data-aos="fade-up" data-aos-delay="600">
         <h3>smart meal planning</h3>
         <p>Get personalized meal plans tailored to your macronutrient goals.</p>
       </div>
-      <div class="feature">
+      <div class="feature" data-aos="fade-up" data-aos-delay="800">
         <h3>preferential bases</h3>
         <p>Answer a few questions to get your preferential basis to get a sense of what kind of foods you like.</p>
       </div>
-      <div class="feature">
+      <div class="feature" data-aos="fade-up" data-aos-delay="1000">
         <h3>ai-powered insights</h3>
         <p>Receive intelligent recommendations about what to eat next and how to make it better.</p>
       </div>
     </div>
 
-    <a href="https://forms.gle/859LAju84j1AZwux7" class="button">join the waitlist now</a>
+    <a href="https://forms.gle/859LAju84j1AZwux7" class="button" data-aos="fade-up" data-aos-delay="1200">join the waitlist now</a>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
+    // Particle Background
+    tsParticles.load("particles-js", {
+      particles: {
+        number: { value: 50, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.3, random: true },
+        size: { value: 2, random: true },
+        move: {
+          enable: true,
+          speed: 0.5,
+          direction: "bottom",
+          random: false,
+          straight: false,
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
+        modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+      },
+      retina_detect: true
+    });
+
+    // Initialize AOS
+    AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true });
+
+    // Typewriter with Glitch Effect
     const phrases = [
       "Welcome to KALO",
       "Your AI Nutrition Coach",
@@ -308,6 +355,8 @@
       if (!isDeleting && currentCharIndex === currentPhrase.length) {
         isDeleting = true;
         typingSpeed = pauseTime;
+        typewriterElement.classList.add('glitch');
+        setTimeout(() => typewriterElement.classList.remove('glitch'), 200);
       } else if (isDeleting && currentCharIndex === 0) {
         isDeleting = false;
         currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
