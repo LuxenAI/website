@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KALO</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -12,7 +12,7 @@
       box-sizing: border-box;
     }
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       background-color: #0a0a0a;
       color: #ffffff;
       display: flex;
@@ -21,7 +21,7 @@
       align-items: center;
       height: 100vh;
       overflow: hidden;
-      background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+      background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%);
       position: relative;
     }
     body::before {
@@ -112,8 +112,8 @@
       -webkit-text-fill-color: #ffffff;
     }
     @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+      from { opacity: 1; }
+      to { opacity: 0; }
     }
     .features {
       display: grid;
@@ -258,20 +258,20 @@
     
     <div class="features">
       <div class="feature">
-        <h3>Smart Meal Planning</h3>
+        <h3>smart meal planning</h3>
         <p>Get personalized meal plans tailored to your macronutrient goals.</p>
       </div>
       <div class="feature">
-        <h3>Preferential Bases</h3>
+        <h3>preferential bases</h3>
         <p>Answer a few questions to get your preferential basis to get a sense of what kind of foods you like.</p>
       </div>
       <div class="feature">
-        <h3>AI-Powered Insights</h3>
+        <h3>ai-powered insights</h3>
         <p>Receive intelligent recommendations about what to eat next and how to make it better.</p>
       </div>
     </div>
 
-    <a href="https://forms.gle/859LAju84j1AZwux7" class="button">Join the waitlist now</a>
+    <a href="https://forms.gle/859LAju84j1AZwux7" class="button">join the waitlist now</a>
   </div>
 
   <script>
@@ -286,9 +286,9 @@
     let currentPhraseIndex = 0;
     let currentCharIndex = 0;
     let isDeleting = false;
-    let typingSpeed = 60; // Even faster typing
-    let deletingSpeed = 30; // Even faster deleting
-    let pauseTime = 600; // Shorter pause
+    let typingSpeed = 60;
+    let deletingSpeed = 30;
+    let pauseTime = 600;
 
     function typeWriter() {
       const typewriterElement = document.getElementById('typewriter');
@@ -316,7 +316,6 @@
       setTimeout(typeWriter, typingSpeed);
     }
 
-    // Start the typewriter effect when the page loads
     window.addEventListener('load', typeWriter);
   </script>
 </body>
