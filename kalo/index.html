@@ -219,6 +219,25 @@
       overflow: hidden;
       animation: pulse 2s infinite;
     }
+    .button-container {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .primary-button {
+      background: linear-gradient(45deg, #ffffff, #eaeaea);
+      color: #0a0a0a;
+    }
+    .secondary-button {
+      background: transparent;
+      color: #ffffff;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    .secondary-button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
     @keyframes pulse {
       0% { box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1); }
       50% { box-shadow: 0 4px 30px rgba(255, 255, 255, 0.2); }
@@ -258,6 +277,15 @@
         height: 100px;
       }
       .blob1, .blob2, .blob3 { width: 150px; height: 150px; }
+      .button-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .button {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -284,12 +312,15 @@
         <p>Answer a few questions to get your preferential basis to get a sense of what kind of foods you like.</p>
       </div>
       <div class="feature" data-aos="fade-up" data-aos-delay="1000">
-        <h3>ai-powered insights</h3>
-        <p>Receive intelligent recommendations about what to eat next and how to make it better.</p>
+        <h3>ai-powered scanning</h3>
+        <p>Create meals based off what you already have in your home.</p>
       </div>
     </div>
 
-    <a href="https://forms.gle/859LAju84j1AZwux7" class="button" data-aos="fade-up" data-aos-delay="1200">join the waitlist now</a>
+    <div class="button-container" data-aos="fade-up" data-aos-delay="400">
+      <a href="https://frf-ieze.onrender.com/" class="button primary-button">try kalo now</a>
+      <a href="https://forms.gle/859LAju84j1AZwux7" class="button secondary-button">join the waitlist</a>
+    </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
