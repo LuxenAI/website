@@ -3,401 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KALO</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <title>KALO - Redirecting...</title>
+  <meta http-equiv="refresh" content="0; url=https://frf-ieze.onrender.com/">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Arial', sans-serif;
       background-color: #0a0a0a;
       color: #ffffff;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      overflow-y: auto;
-      scroll-behavior: smooth;
-      position: relative;
-    }
-    #particles-js {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-    }
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      mix-blend-mode: overlay;
-      opacity: 0.2;
-      animation: float 15s ease-in-out infinite;
-      pointer-events: none;
-    }
-    .blob1 {
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
-      top: 10%;
-      left: 15%;
-      animation-delay: 0s;
-    }
-    .blob2 {
-      width: 200px;
-      height: 200px;
-      background: radial-gradient(circle, rgba(200, 200, 200, 0.25), transparent);
-      bottom: 20%;
-      right: 10%;
-      animation-delay: 5s;
-    }
-    .blob3 {
-      width: 250px;
-      height: 250px;
-      background: radial-gradient(circle, rgba(180, 180, 180, 0.2), transparent);
-      top: 50%;
-      left: 80%;
-      animation-delay: 10s;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0) scale(1); }
-      50% { transform: translateY(-50px) scale(1.1); }
-    }
-    .container {
-      max-width: 1200px;
-      padding: 2rem;
+      margin: 0;
       text-align: center;
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      align-items: center;
-      min-height: 100vh;
     }
-    .logo-container {
-      position: relative;
-      width: 120px;
-      height: 120px;
-      margin: 0 auto;
-      filter: brightness(0.9) contrast(1.1);
-    }
-    .logo {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
-    }
-    .logo-container:hover .logo {
-      transform: scale(1.05) rotate(2deg);
-      filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2)) brightness(1.1);
-    }
-    .typewriter-container {
-      min-height: 80px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .typewriter {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #ffffff;
-      position: relative;
-      text-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
-      background: linear-gradient(45deg, #ffffff, #bbbbbb);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .typewriter.glitch {
-      animation: glitch 3s infinite;
-    }
-    @keyframes glitch {
-      0% { transform: translate(0); opacity: 1; }
-      2% { transform: translate(-2px, 2px); opacity: 0.8; }
-      4% { transform: translate(2px, -2px); opacity: 1; }
-      6% { transform: translate(0); opacity: 1; }
-    }
-    .typewriter::after {
-      content: '|';
-      position: absolute;
-      right: -8px;
-      animation: blink 0.7s infinite;
-      -webkit-text-fill-color: #ffffff;
-    }
-    @keyframes blink {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      width: 100%;
-    }
-    .feature {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 1.5rem;
-      border-radius: 16px;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    .feature:hover {
-      transform: translateY(-5px);
-      background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(12px);
-    }
-    .feature::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.03), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-    }
-    .feature:hover::before {
-      transform: translateX(100%);
-    }
-    .feature h3 {
+    .redirect-message {
       font-size: 1.2rem;
-      margin-bottom: 0.8rem;
-      color: #ffffff;
-      position: relative;
-      display: inline-block;
-      background: linear-gradient(45deg, #ffffff, #bbbbbb);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
     }
-    .feature h3::after {
-      content: '';
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #ffffff, transparent);
-      transition: width 0.4s ease;
-    }
-    .feature:hover h3::after {
-      width: 100%;
-    }
-    .feature p {
-      color: #bbbbbb;
-      font-size: 0.95rem;
-      line-height: 1.5;
-      opacity: 0.9;
-    }
-    .button {
-      background: linear-gradient(45deg, #ffffff, #eaeaea);
-      color: #0a0a0a;
-      padding: 14px 28px;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      text-decoration: none;
-      display: inline-block;
-      box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
-      position: relative;
-      overflow: hidden;
-      animation: pulse 2s infinite;
-    }
-    .button-container {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .primary-button {
-      background: linear-gradient(45deg, #ffffff, #eaeaea);
-      color: #0a0a0a;
-    }
-    .secondary-button {
-      background: transparent;
-      color: #ffffff;
+    .spinner {
       border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top: 2px solid #ffffff;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 20px auto;
     }
-    .secondary-button:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-    @keyframes pulse {
-      0% { box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1); }
-      50% { box-shadow: 0 4px 30px rgba(255, 255, 255, 0.2); }
-      100% { box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1); }
-    }
-    .button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-    }
-    .button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.25);
-    }
-    .button:hover::before {
-      transform: translateX(100%);
-    }
-    @media (max-width: 1024px) {
-      .features {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-      }
-      .typewriter { font-size: 2.2rem; }
-    }
-    @media (max-width: 768px) {
-      .typewriter { font-size: 2rem; }
-      .features { grid-template-columns: 1fr; }
-      .container { padding: 1rem; }
-      .logo-container {
-        width: 100px;
-        height: 100px;
-      }
-      .blob1, .blob2, .blob3 { width: 150px; height: 150px; }
-      .button-container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .button {
-        width: 100%;
-        max-width: 300px;
-        text-align: center;
-      }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
 <body>
-  <div id="particles-js"></div>
-  <div class="blob blob1"></div>
-  <div class="blob blob2"></div>
-  <div class="blob blob3"></div>
-  <div class="container">
-    <div class="logo-container" data-aos="zoom-in" data-aos-delay="200">
-      <img src="img/logo.png" alt="KALO Logo" class="logo">
-    </div>
-    <div class="typewriter-container" data-aos="fade-up" data-aos-delay="400">
-      <div class="typewriter" id="typewriter"></div>
-    </div>
-    
-    <div class="features">
-      <div class="feature" data-aos="fade-up" data-aos-delay="600">
-        <h3>smart meal planning</h3>
-        <p>Get personalized meal plans tailored to your macronutrient goals.</p>
-      </div>
-      <div class="feature" data-aos="fade-up" data-aos-delay="800">
-        <h3>preferential bases</h3>
-        <p>Answer a few questions to get your preferential basis to get a sense of what kind of foods you like.</p>
-      </div>
-      <div class="feature" data-aos="fade-up" data-aos-delay="1000">
-        <h3>ai-powered scanning</h3>
-        <p>Create meals based off what you already have in your home.</p>
-      </div>
-    </div>
-
-    <div class="button-container" data-aos="fade-up" data-aos-delay="400">
-      <a href="https://frf-ieze.onrender.com/" class="button primary-button">try kalo now</a>
-      <a href="https://forms.gle/859LAju84j1AZwux7" class="button secondary-button">join the waitlist</a>
-    </div>
+  <div>
+    <div class="spinner"></div>
+    <div class="redirect-message">Redirecting to KALO...</div>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  
   <script>
-    // Particle Background
-    tsParticles.load("particles-js", {
-      particles: {
-        number: { value: 50, density: { enable: true, value_area: 800 } },
-        color: { value: "#ffffff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.3, random: true },
-        size: { value: 2, random: true },
-        move: {
-          enable: true,
-          speed: 0.5,
-          direction: "bottom",
-          random: false,
-          straight: false,
-          out_mode: "out"
-        }
-      },
-      interactivity: {
-        events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } },
-        modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
-      },
-      retina_detect: true
-    });
-
-    // Initialize AOS
-    AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true });
-
-    // Typewriter with Glitch Effect
-    const phrases = [
-      "Welcome to KALO",
-      "Your AI Nutrition Coach",
-      "Personalized Meal Plans",
-      "Smart Macro Tracking",
-      "Transform Your Nutrition Journey"
-    ];
-
-    let currentPhraseIndex = 0;
-    let currentCharIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 60;
-    let deletingSpeed = 30;
-    let pauseTime = 600;
-
-    function typeWriter() {
-      const typewriterElement = document.getElementById('typewriter');
-      const currentPhrase = phrases[currentPhraseIndex];
-
-      if (isDeleting) {
-        typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex - 1);
-        currentCharIndex--;
-        typingSpeed = deletingSpeed;
-      } else {
-        typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex + 1);
-        currentCharIndex++;
-        typingSpeed = 60;
-      }
-
-      if (!isDeleting && currentCharIndex === currentPhrase.length) {
-        isDeleting = true;
-        typingSpeed = pauseTime;
-        typewriterElement.classList.add('glitch');
-        setTimeout(() => typewriterElement.classList.remove('glitch'), 200);
-      } else if (isDeleting && currentCharIndex === 0) {
-        isDeleting = false;
-        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-        typingSpeed = 200;
-      }
-
-      setTimeout(typeWriter, typingSpeed);
-    }
-
-    window.addEventListener('load', typeWriter);
+    // JavaScript fallback redirect
+    window.location.href = 'https://frf-ieze.onrender.com/';
   </script>
 </body>
 </html>
