@@ -1,49 +1,351 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KALO - Redirecting...</title>
-  <meta http-equiv="refresh" content="0; url=https://frf-ieze.onrender.com/">
-  <style>
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #0a0a0a;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      text-align: center;
-    }
-    .redirect-message {
-      font-size: 1.2rem;
-    }
-    .spinner {
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-top: 2px solid #ffffff;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 20px auto;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000;
+            color: #fff;
+            line-height: 1.5;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #888;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .get-started {
+            background: #fff;
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #888;
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: #000;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            padding: 14px 28px;
+            border: 1px solid #333;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .phone {
+            width: 280px;
+            height: 560px;
+            background: #111;
+            border-radius: 35px;
+            padding: 8px;
+            border: 1px solid #222;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .app-bar {
+            background: #111;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #222;
+        }
+
+        .ingredient {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid #111;
+        }
+
+        .ingredient span {
+            margin-right: 12px;
+            font-size: 20px;
+        }
+
+        .ingredient-info h4 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .ingredient-info p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .features {
+            padding: 120px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: #111;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 32px;
+            border: 1px solid #222;
+        }
+
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .feature p {
+            color: #888;
+            font-size: 16px;
+        }
+
+        .final-cta {
+            padding: 120px 40px;
+            text-align: center;
+            background: #111;
+            margin: 0 40px;
+            border-radius: 24px;
+        }
+
+        .final-cta h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .final-cta p {
+            font-size: 20px;
+            color: #888;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 100px 20px 40px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .features {
+                padding: 80px 20px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .final-cta {
+                margin: 0 20px;
+                padding: 80px 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div>
-    <div class="spinner"></div>
-    <div class="redirect-message">Redirecting to KALO...</div>
-  </div>
-  
-  <script>
-    // JavaScript fallback redirect
-    window.location.href = 'https://frf-ieze.onrender.com/';
-  </script>
+    <nav>
+        <div class="logo">Kalo</div>
+        <ul class="nav-links">
+        </ul>
+        <a href="https://frf-ieze.onrender.com/" class="get-started">Get Started</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Turn your pantry into perfect meals</h1>
+            <p>Stop wasting food. Create personalized meal plans using ingredients you already have based off of your macro goals.</p>
+            <div class="cta-buttons">
+                <a href="https://frf-ieze.onrender.com/" class="btn-primary">Start Free</a>
+                <a href="https://x.com/gan_tall" class="btn-secondary">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="phone">
+                <div class="screen">
+                    <div class="app-bar">My Pantry</div>
+                    <div class="ingredient">
+                        <span>🥕</span>
+                        <div class="ingredient-info">
+                            <h4>Carrots</h4>
+                            <p>3 medium</p>
+                        </div>
+                    </div>
+                    <div class="ingredient">
+                        <span>🍚</span>
+                        <div class="ingredient-info">
+                            <h4>Rice</h4>
+                            <p>2 cups</p>
+                        </div>
+                    </div>
+                    <div class="ingredient">
+                        <span>🐟</span>
+                        <div class="ingredient-info">
+                            <h4>Salmon</h4>
+                            <p>2 fillets</p>
+                        </div>
+                    </div>
+                    <div class="ingredient">
+                        <span>🥬</span>
+                        <div class="ingredient-info">
+                            <h4>Spinach</h4>
+                            <p>1 bag</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Why Kalo works</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Smart Planning</h3>
+                <p>AI creates meal plans that hit your nutrition goals using what you have</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💰</div>
+                <h3>Save Money</h3>
+                <p>No more buying specialty ingredients. Use what's in your kitchen</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🌱</div>
+                <h3>Less Waste</h3>
+                <p>Turn forgotten ingredients into delicious, healthy meals</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="final-cta">
+        <h2>Ready to start?</h2>
+        <p>Transform your pantry into perfect meals</p>
+        <a href="https://frf-ieze.onrender.com/" class="btn-primary">Get Kalo Free</a>
+    </section>
 </body>
 </html>
