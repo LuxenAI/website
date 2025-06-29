@@ -6,10 +6,10 @@
         <!-- Start of headStart -->
         <!-- End of headStart -->
         <meta name="viewport" content="width=device-width">
-        <meta name="generator" content="Framer 662ecd5">
+        <meta name="generator" content="Framer 4458791">
         <title>Kalo - Your AI Meal Maker</title>
         <meta name="description" content="Kalo turns your pantry into personalized, goal-driven meals.">
-        <meta name="framer-search-index" content="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/searchIndex-5ZsVJVHUcEen.json">
+        <meta name="framer-search-index" content="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/searchIndex-SfoWUrxHgDzl.json">
         <link href="https://framerusercontent.com/images/JIC5HTLfRRBiPrwN35lpt8hDrY.svg" rel="icon" media="(prefers-color-scheme: light)">
         <link href="https://framerusercontent.com/images/JIC5HTLfRRBiPrwN35lpt8hDrY.svg" rel="icon" media="(prefers-color-scheme: dark)">
         <!-- Open Graph / Facebook -->
@@ -47,7 +47,7 @@
                 }
             }
         </style>
-        <style data-framer-css-ssr-minified data-framer-components="framer-lib-cursors-host framer-lEVLX PropertyOverrides framer-RdQ93 framer-0rQNw framer-nOyhx framer-CPUaD framer-sLEXD framer-RRpEu framer-G3gxh framer-1UWry framer-LBntQ framer-I3IJ5 framer-lib-form-plain-text-input framer-lNfBO">
+        <style data-framer-css-ssr-minified data-framer-components="framer-lib-cursors-host framer-lEVLX PropertyOverrides framer-RdQ93 framer-0rQNw framer-nOyhx framer-CPUaD framer-sLEXD framer-RRpEu framer-G3gxh framer-1UWry framer-d84EG framer-I3IJ5 framer-lib-form-plain-text-input framer-lNfBO">
             html,body,#main {
                 margin: 0;
                 padding: 0;
@@ -448,13 +448,16 @@
                 color: var(--framer-blockquote-text-color, var(--framer-link-text-color, var(--framer-text-color, #000)));
                 font-size: calc(var(--framer-blockquote-font-size, var(--framer-font-size, 16px)) * var(--framer-font-size-scale, 1));
                 text-transform: var(--framer-blockquote-text-transform, var(--framer-link-text-transform, var(--framer-text-transform, none)));
+                cursor: var(--framer-custom-cursors, pointer)
+            }
+
+            a.framer-text,span.framer-text[data-nested-link] {
                 text-decoration-line: var(--framer-blockquote-text-decoration, var(--framer-link-text-decoration, var(--framer-text-decoration, initial)));
                 text-decoration-style: var(--framer-blockquote-text-decoration-style, var(--framer-link-text-decoration-style, var(--framer-text-decoration-style, initial)));
                 text-decoration-color: var(--framer-blockquote-text-decoration-color, var(--framer-link-text-decoration-color, var(--framer-text-decoration-color, initial)));
                 text-decoration-thickness: var(--framer-blockquote-text-decoration-thickness, var(--framer-link-text-decoration-thickness, var(--framer-text-decoration-thickness, initial)));
                 text-decoration-skip-ink: var(--framer-blockquote-text-decoration-skip-ink, var(--framer-link-text-decoration-skip-ink, var(--framer-text-decoration-skip-ink, initial)));
-                text-underline-offset: var(--framer-blockquote-text-decoration-offset, var(--framer-link-text-decoration-offset, var(--framer-text-decoration-offset, initial)));
-                cursor: var(--framer-custom-cursors, pointer)
+                text-underline-offset: var(--framer-blockquote-text-decoration-offset, var(--framer-link-text-decoration-offset, var(--framer-text-decoration-offset, initial)))
             }
 
             @supports not (color: color(display-p3 1 1 1)) {
@@ -483,7 +486,10 @@
                 font-weight: var(--framer-link-hover-font-weight, var(--framer-blockquote-font-weight, var(--framer-link-font-weight, var(--framer-font-weight, 400))));
                 color: var(--framer-link-hover-text-color, var(--framer-blockquote-text-color, var(--framer-link-text-color, var(--framer-text-color, #000))));
                 font-size: calc(var(--framer-link-hover-font-size, var(--framer-blockquote-font-size, var(--framer-font-size, 16px))) * var(--framer-font-size-scale, 1));
-                text-transform: var(--framer-link-hover-text-transform, var(--framer-blockquote-text-transform, var(--framer-link-text-transform, var(--framer-text-transform, none))));
+                text-transform: var(--framer-link-hover-text-transform, var(--framer-blockquote-text-transform, var(--framer-link-text-transform, var(--framer-text-transform, none))))
+            }
+
+            a.framer-text:hover,span.framer-text[data-nested-link]:hover {
                 text-decoration-line: var(--framer-link-hover-text-decoration, var(--framer-blockquote-text-decoration, var(--framer-link-text-decoration, var(--framer-text-decoration, initial))));
                 text-decoration-style: var(--framer-link-hover-text-decoration-style, var(--framer-blockquote-text-decoration-style, var(--framer-link-text-decoration-style, var(--framer-text-decoration-style, initial))));
                 text-decoration-color: var(--framer-link-hover-text-decoration-color, var(--framer-blockquote-text-decoration-color, var(--framer-link-text-decoration-color, var(--framer-text-decoration-color, initial))));
@@ -518,7 +524,10 @@
                 font-weight: var(--framer-link-current-font-weight, var(--framer-link-font-weight, var(--framer-font-weight, 400)));
                 color: var(--framer-link-current-text-color, var(--framer-link-text-color, var(--framer-text-color, #000)));
                 font-size: calc(var(--framer-link-current-font-size, var(--framer-link-font-size, var(--framer-font-size, 16px))) * var(--framer-font-size-scale, 1));
-                text-transform: var(--framer-link-current-text-transform, var(--framer-link-text-transform, var(--framer-text-transform, none)));
+                text-transform: var(--framer-link-current-text-transform, var(--framer-link-text-transform, var(--framer-text-transform, none)))
+            }
+
+            a.framer-text[data-framer-page-link-current],span.framer-text[data-framer-page-link-current] {
                 text-decoration-line: var(--framer-link-current-text-decoration, var(--framer-link-text-decoration, var(--framer-text-decoration, initial)));
                 text-decoration-style: var(--framer-link-current-text-decoration-style, var(--framer-link-text-decoration-style, var(--framer-text-decoration-style, initial)));
                 text-decoration-color: var(--framer-link-current-text-decoration-color, var(--framer-link-text-decoration-color, var(--framer-text-decoration-color, initial)));
@@ -553,7 +562,10 @@
                 font-weight: var(--framer-link-hover-font-weight, var(--framer-link-current-font-weight, var(--framer-link-font-weight, var(--framer-font-weight, 400))));
                 color: var(--framer-link-hover-text-color, var(--framer-link-current-text-color, var(--framer-link-text-color, var(--framer-text-color, #000))));
                 font-size: calc(var(--framer-link-hover-font-size, var(--framer-link-current-font-size, var(--framer-link-font-size, var(--framer-font-size, 16px)))) * var(--framer-font-size-scale, 1));
-                text-transform: var(--framer-link-hover-text-transform, var(--framer-link-current-text-transform, var(--framer-link-text-transform, var(--framer-text-transform, none))));
+                text-transform: var(--framer-link-hover-text-transform, var(--framer-link-current-text-transform, var(--framer-link-text-transform, var(--framer-text-transform, none))))
+            }
+
+            a.framer-text[data-framer-page-link-current]:hover,span.framer-text[data-framer-page-link-current]:hover {
                 text-decoration-line: var(--framer-link-hover-text-decoration, var(--framer-link-current-text-decoration, var(--framer-link-text-decoration, var(--framer-text-decoration, initial))));
                 text-decoration-style: var(--framer-link-hover-text-decoration-style, var(--framer-link-current-text-decoration-style, var(--framer-link-text-decoration-style, var(--framer-text-decoration-style, initial))));
                 text-decoration-color: var(--framer-link-hover-text-decoration-color, var(--framer-link-current-text-decoration-color, var(--framer-link-text-decoration-color, var(--framer-text-decoration-color, initial))));
@@ -2395,11 +2407,11 @@
                 background-image: var(--framer-input-icon-image)
             }
 
-            .framer-LBntQ.framer-hutigb,.framer-LBntQ .framer-hutigb {
+            .framer-d84EG.framer-hutigb,.framer-d84EG .framer-hutigb {
                 display: block
             }
 
-            .framer-LBntQ.framer-l38ww0 {
+            .framer-d84EG.framer-l38ww0 {
                 align-content: center;
                 align-items: center;
                 display: flex;
@@ -2414,7 +2426,7 @@
                 width: 1440px
             }
 
-            .framer-LBntQ .framer-163lso1 {
+            .framer-d84EG .framer-163lso1 {
                 align-content: center;
                 align-items: center;
                 display: flex;
@@ -2431,7 +2443,7 @@
                 width: 1px
             }
 
-            .framer-LBntQ .framer-9ijvn4 {
+            .framer-d84EG .framer-9ijvn4 {
                 display: grid;
                 flex: none;
                 gap: 62px;
@@ -2446,7 +2458,7 @@
                 width: 100%
             }
 
-            .framer-LBntQ .framer-1np3p7q {
+            .framer-d84EG .framer-1np3p7q {
                 align-content: flex-start;
                 align-items: flex-start;
                 align-self: start;
@@ -2463,14 +2475,14 @@
                 width: 100%
             }
 
-            .framer-LBntQ .framer-1j0w45s-container {
+            .framer-d84EG .framer-1j0w45s-container {
                 flex: none;
                 height: auto;
                 position: relative;
                 width: auto
             }
 
-            .framer-LBntQ .framer-1tqnzmg,.framer-LBntQ .framer-d7czjd,.framer-LBntQ .framer-ptkljh,.framer-LBntQ .framer-1q2kod0,.framer-LBntQ .framer-qio0nb,.framer-LBntQ .framer-1cfun88,.framer-LBntQ .framer-1rrtz08,.framer-LBntQ .framer-190qcgg,.framer-LBntQ .framer-upke2e {
+            .framer-d84EG .framer-1tqnzmg,.framer-d84EG .framer-d7czjd,.framer-d84EG .framer-ptkljh,.framer-d84EG .framer-1q2kod0,.framer-d84EG .framer-qio0nb,.framer-d84EG .framer-1cfun88,.framer-d84EG .framer-1rrtz08,.framer-d84EG .framer-190qcgg,.framer-d84EG .framer-1qq465o,.framer-d84EG .framer-153pclk,.framer-d84EG .framer-upke2e {
                 flex: none;
                 height: auto;
                 position: relative;
@@ -2480,7 +2492,7 @@
                 word-wrap: break-word
             }
 
-            .framer-LBntQ .framer-11e5xh0,.framer-LBntQ .framer-r447tr,.framer-LBntQ .framer-hh66wk {
+            .framer-d84EG .framer-11e5xh0,.framer-d84EG .framer-r447tr,.framer-d84EG .framer-hh66wk {
                 align-content: flex-start;
                 align-items: flex-start;
                 align-self: start;
@@ -2497,7 +2509,7 @@
                 width: 100%
             }
 
-            .framer-LBntQ .framer-1fprldz,.framer-LBntQ .framer-1fs2lj7 {
+            .framer-d84EG .framer-1fprldz,.framer-d84EG .framer-1fs2lj7 {
                 align-content: center;
                 align-items: center;
                 display: flex;
@@ -2513,7 +2525,7 @@
                 width: 100%
             }
 
-            .framer-LBntQ .framer-1guihnm {
+            .framer-d84EG .framer-1guihnm {
                 align-content: flex-start;
                 align-items: flex-start;
                 display: flex;
@@ -2529,7 +2541,7 @@
                 width: 100%
             }
 
-            .framer-LBntQ .framer-c520a1 {
+            .framer-d84EG .framer-c520a1 {
                 align-content: flex-start;
                 align-items: flex-start;
                 display: flex;
@@ -2544,7 +2556,7 @@
                 width: 100%
             }
 
-            .framer-LBntQ .framer-371gxl {
+            .framer-d84EG .framer-371gxl {
                 --framer-input-focused-border-color: var(--token-ff1475bf-ed84-4f1a-8ac4-a73aae2dbbed, #eaa879);
                 --framer-input-focused-border-style: solid;
                 --framer-input-focused-border-width: 1px;
@@ -2560,14 +2572,14 @@
                 width: 100%
             }
 
-            .framer-LBntQ .framer-171g5n7-container {
+            .framer-d84EG .framer-171g5n7-container {
                 flex: none;
                 height: 40px;
                 position: relative;
                 width: 100%
             }
 
-            .framer-LBntQ .framer-1xtpr6m {
+            .framer-d84EG .framer-1xtpr6m {
                 align-content: center;
                 align-items: center;
                 display: flex;
@@ -2583,7 +2595,7 @@
                 width: 100%
             }
 
-            .framer-LBntQ .framer-75o66r {
+            .framer-d84EG .framer-75o66r {
                 flex: 1 0 0px;
                 height: auto;
                 position: relative;
@@ -2593,25 +2605,25 @@
                 word-wrap: break-word
             }
 
-            .framer-LBntQ.framer-v-bac9ns.framer-l38ww0 {
+            .framer-d84EG.framer-v-bac9ns.framer-l38ww0 {
                 width: 810px
             }
 
-            .framer-LBntQ.framer-v-bac9ns .framer-9ijvn4 {
+            .framer-d84EG.framer-v-bac9ns .framer-9ijvn4 {
                 gap: 24px;
                 grid-template-columns: repeat(5,minmax(50px,1fr))
             }
 
-            .framer-LBntQ.framer-v-bac9ns .framer-hh66wk {
+            .framer-d84EG.framer-v-bac9ns .framer-hh66wk {
                 grid-column: span 2
             }
 
-            .framer-LBntQ.framer-v-5v32us.framer-l38ww0 {
+            .framer-d84EG.framer-v-5v32us.framer-l38ww0 {
                 padding: 32px 16px;
                 width: 390px
             }
 
-            .framer-LBntQ.framer-v-5v32us .framer-9ijvn4 {
+            .framer-d84EG.framer-v-5v32us .framer-9ijvn4 {
                 gap: 24px;
                 grid-template-columns: repeat(1,minmax(50px,1fr))
             }
@@ -2636,7 +2648,16 @@
                 --framer-text-transform: none
             }
 
-            .framer-LBntQ[data-border=true]:after,.framer-LBntQ [data-border=true]:after {
+            .framer-fj62t .framer-styles-preset-2wplth:not(.rich-text-wrapper),.framer-fj62t .framer-styles-preset-2wplth.rich-text-wrapper a {
+                --framer-link-current-text-color: var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, #687278) ;
+                --framer-link-current-text-decoration: none;
+                --framer-link-hover-text-color: var(--token-fb552b7f-a107-45dc-9e34-ef837a53e5c2, #ffffff) ;
+                --framer-link-hover-text-decoration: none;
+                --framer-link-text-color: var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, #687278);
+                --framer-link-text-decoration: none
+            }
+
+            .framer-d84EG[data-border=true]:after,.framer-d84EG [data-border=true]:after {
                 content: "";
                 border-width: var(--border-top-width, 0) var(--border-right-width, 0) var(--border-bottom-width, 0) var(--border-left-width, 0);
                 border-color: var(--border-color, none);
@@ -2981,7 +3002,7 @@
         <script async src="https://events.framer.com/script?v=2" data-fid="8a7aa8327cdae58b5b516132262d91a8bad08b485c8ee52ce8fd735cad6f05e9" data-no-nt></script>
         <!-- Start of bodyStart -->
         <!-- End of bodyStart -->
-        <div id="main" data-framer-hydrate-v2="{&quot;routeId&quot;:&quot;augiA20Il&quot;,&quot;localeId&quot;:&quot;default&quot;,&quot;breakpoints&quot;:[{&quot;hash&quot;:&quot;72rtr7&quot;,&quot;mediaQuery&quot;:&quot;(min-width: 1440px)&quot;},{&quot;hash&quot;:&quot;haz0z2&quot;,&quot;mediaQuery&quot;:&quot;(min-width: 810px) and (max-width: 1439px)&quot;},{&quot;hash&quot;:&quot;j3ifol&quot;,&quot;mediaQuery&quot;:&quot;(max-width: 809px)&quot;}]}" data-framer-ssr-released-at="2025-06-20T15:05:48.718Z" data-framer-page-optimized-at="2025-06-25T03:36:08.026Z" data-framer-generated-page>
+        <div id="main" data-framer-hydrate-v2="{&quot;routeId&quot;:&quot;augiA20Il&quot;,&quot;localeId&quot;:&quot;default&quot;,&quot;breakpoints&quot;:[{&quot;hash&quot;:&quot;72rtr7&quot;,&quot;mediaQuery&quot;:&quot;(min-width: 1440px)&quot;},{&quot;hash&quot;:&quot;haz0z2&quot;,&quot;mediaQuery&quot;:&quot;(min-width: 810px) and (max-width: 1439px)&quot;},{&quot;hash&quot;:&quot;j3ifol&quot;,&quot;mediaQuery&quot;:&quot;(max-width: 809px)&quot;}]}" data-framer-ssr-released-at="2025-06-26T13:47:34.026Z" data-framer-page-optimized-at="2025-06-29T00:51:42.793Z" data-framer-generated-page>
             <!--$-->
             <style data-framer-html-style>
                 html body {
@@ -3499,7 +3520,7 @@
                 </section>
                 <div class="framer-1oj5hwc-container">
                     <div class="ssr-variant hidden-haz0z2 hidden-j3ifol">
-                        <footer class="framer-LBntQ framer-MGUU9 framer-WKM22 framer-l38ww0 framer-v-l38ww0" data-framer-name="Desktop" style="width:100%">
+                        <footer class="framer-d84EG framer-MGUU9 framer-WKM22 framer-fj62t framer-l38ww0 framer-v-l38ww0" data-framer-name="Desktop" style="width:100%">
                             <div class="framer-163lso1" data-framer-name="Container">
                                 <div class="framer-9ijvn4" data-framer-name="Footer grid">
                                     <div class="framer-1np3p7q" data-framer-name="Footer item">
@@ -3546,6 +3567,20 @@
                                             </div>
                                             <div class="framer-190qcgg" style="outline:none;display:flex;flex-direction:column;justify-content:flex-start;flex-shrink:0;--extracted-r6o4lv:var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120));transform:none" data-framer-component-type="RichTextContainer">
                                                 <p class="framer-text framer-styles-preset-1dkk44e" data-styles-preset="v4PWmgpAs" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120)))">Twitter</p>
+                                            </div>
+                                            <div class="framer-1qq465o" style="outline:none;display:flex;flex-direction:column;justify-content:flex-start;flex-shrink:0;--extracted-r6o4lv:var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120));transform:none" data-framer-component-type="RichTextContainer">
+                                                <p class="framer-text framer-styles-preset-1dkk44e" data-styles-preset="v4PWmgpAs" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120)))">
+                                                    <!--$-->
+                                                    <a class="framer-text framer-styles-preset-2wplth" data-styles-preset="CHX4TW73y" href="https://docs.google.com/document/d/e/2PACX-1vRIIJajeFgItCGK9WeXLt-N91ERLwE-xdpdl2yrP_emQNvU8bbwdYZVOFyPCDAVwxgFhfqE8MFe5FfQ/pub" target="_blank" rel="noopener">Terms of Service</a>
+                                                    <!--/$-->
+                                                </p>
+                                            </div>
+                                            <div class="framer-153pclk" style="outline:none;display:flex;flex-direction:column;justify-content:flex-start;flex-shrink:0;--extracted-r6o4lv:var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120));transform:none" data-framer-component-type="RichTextContainer">
+                                                <p class="framer-text framer-styles-preset-1dkk44e" data-styles-preset="v4PWmgpAs" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120)))">
+                                                    <!--$-->
+                                                    <a class="framer-text framer-styles-preset-2wplth" data-styles-preset="CHX4TW73y" href="https://www.termsfeed.com/live/852765cc-97c5-447b-bbda-e4fc326f76ec" target="_blank" rel="noopener">Privacy Policy</a>
+                                                    <!--/$-->
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -3578,7 +3613,7 @@
                         </footer>
                     </div>
                     <div class="ssr-variant hidden-j3ifol hidden-72rtr7">
-                        <footer class="framer-LBntQ framer-MGUU9 framer-WKM22 framer-l38ww0 framer-v-bac9ns" data-framer-name="Tablet" style="width:100%">
+                        <footer class="framer-d84EG framer-MGUU9 framer-WKM22 framer-fj62t framer-l38ww0 framer-v-bac9ns" data-framer-name="Tablet" style="width:100%">
                             <div class="framer-163lso1" data-framer-name="Container">
                                 <div class="framer-9ijvn4" data-framer-name="Footer grid">
                                     <div class="framer-1np3p7q" data-framer-name="Footer item">
@@ -3625,6 +3660,20 @@
                                             </div>
                                             <div class="framer-190qcgg" style="outline:none;display:flex;flex-direction:column;justify-content:flex-start;flex-shrink:0;--extracted-r6o4lv:var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120));transform:none" data-framer-component-type="RichTextContainer">
                                                 <p class="framer-text framer-styles-preset-1dkk44e" data-styles-preset="v4PWmgpAs" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120)))">Twitter</p>
+                                            </div>
+                                            <div class="framer-1qq465o" style="outline:none;display:flex;flex-direction:column;justify-content:flex-start;flex-shrink:0;--extracted-r6o4lv:var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120));transform:none" data-framer-component-type="RichTextContainer">
+                                                <p class="framer-text framer-styles-preset-1dkk44e" data-styles-preset="v4PWmgpAs" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120)))">
+                                                    <!--$-->
+                                                    <a class="framer-text framer-styles-preset-2wplth" data-styles-preset="CHX4TW73y" href="https://docs.google.com/document/d/e/2PACX-1vRIIJajeFgItCGK9WeXLt-N91ERLwE-xdpdl2yrP_emQNvU8bbwdYZVOFyPCDAVwxgFhfqE8MFe5FfQ/pub" target="_blank" rel="noopener">Terms of Service</a>
+                                                    <!--/$-->
+                                                </p>
+                                            </div>
+                                            <div class="framer-153pclk" style="outline:none;display:flex;flex-direction:column;justify-content:flex-start;flex-shrink:0;--extracted-r6o4lv:var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120));transform:none" data-framer-component-type="RichTextContainer">
+                                                <p class="framer-text framer-styles-preset-1dkk44e" data-styles-preset="v4PWmgpAs" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120)))">
+                                                    <!--$-->
+                                                    <a class="framer-text framer-styles-preset-2wplth" data-styles-preset="CHX4TW73y" href="https://www.termsfeed.com/live/852765cc-97c5-447b-bbda-e4fc326f76ec" target="_blank" rel="noopener">Privacy Policy</a>
+                                                    <!--/$-->
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -3657,7 +3706,7 @@
                         </footer>
                     </div>
                     <div class="ssr-variant hidden-haz0z2 hidden-72rtr7">
-                        <footer class="framer-LBntQ framer-MGUU9 framer-WKM22 framer-l38ww0 framer-v-5v32us" data-framer-name="Mobile" style="width:100%">
+                        <footer class="framer-d84EG framer-MGUU9 framer-WKM22 framer-fj62t framer-l38ww0 framer-v-5v32us" data-framer-name="Mobile" style="width:100%">
                             <div class="framer-163lso1" data-framer-name="Container">
                                 <div class="framer-9ijvn4" data-framer-name="Footer grid">
                                     <div class="framer-1np3p7q" data-framer-name="Footer item">
@@ -3704,6 +3753,20 @@
                                             </div>
                                             <div class="framer-190qcgg" style="outline:none;display:flex;flex-direction:column;justify-content:flex-start;flex-shrink:0;--extracted-r6o4lv:var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120));transform:none" data-framer-component-type="RichTextContainer">
                                                 <p class="framer-text framer-styles-preset-1dkk44e" data-styles-preset="v4PWmgpAs" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120)))">Twitter</p>
+                                            </div>
+                                            <div class="framer-1qq465o" style="outline:none;display:flex;flex-direction:column;justify-content:flex-start;flex-shrink:0;--extracted-r6o4lv:var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120));transform:none" data-framer-component-type="RichTextContainer">
+                                                <p class="framer-text framer-styles-preset-1dkk44e" data-styles-preset="v4PWmgpAs" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120)))">
+                                                    <!--$-->
+                                                    <a class="framer-text framer-styles-preset-2wplth" data-styles-preset="CHX4TW73y" href="https://docs.google.com/document/d/e/2PACX-1vRIIJajeFgItCGK9WeXLt-N91ERLwE-xdpdl2yrP_emQNvU8bbwdYZVOFyPCDAVwxgFhfqE8MFe5FfQ/pub" target="_blank" rel="noopener">Terms of Service</a>
+                                                    <!--/$-->
+                                                </p>
+                                            </div>
+                                            <div class="framer-153pclk" style="outline:none;display:flex;flex-direction:column;justify-content:flex-start;flex-shrink:0;--extracted-r6o4lv:var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120));transform:none" data-framer-component-type="RichTextContainer">
+                                                <p class="framer-text framer-styles-preset-1dkk44e" data-styles-preset="v4PWmgpAs" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-9dcac85b-60ee-43cc-aaf3-cfe15b6859f4, rgb(104, 114, 120)))">
+                                                    <!--$-->
+                                                    <a class="framer-text framer-styles-preset-2wplth" data-styles-preset="CHX4TW73y" href="https://www.termsfeed.com/live/852765cc-97c5-447b-bbda-e4fc326f76ec" target="_blank" rel="noopener">Privacy Policy</a>
+                                                    <!--/$-->
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -4587,18 +4650,18 @@
             }
             )()("data-framer-appear-id", "__Appear_Animation_Transform__", false)
         </script>
-        <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/chunk-4ANRFSMD.mjs">
+        <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/chunk-3CNZPZWV.mjs">
         <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/chunk-HZL4YIMB.mjs">
         <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/chunk-A3IIQ6X3.mjs">
-        <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/UQfPcLvGAEfBPFSSlpiESeTUIDabNspY25rNMl8IhTQ.4L4OVJG7.mjs">
+        <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/UQfPcLvGAEfBPFSSlpiESeTUIDabNspY25rNMl8IhTQ.6C3CDVYU.mjs">
         <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/chunk-24E47INZ.mjs">
         <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/chunk-P2R3PKEI.mjs">
-        <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/chunk-UYTBJB26.mjs">
-        <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/chunk-K53TZK3B.mjs">
-        <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/chunk-NYOX3NID.mjs">
+        <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/chunk-5EPCTJQ2.mjs">
+        <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/chunk-JQGKHEVN.mjs">
+        <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/chunk-Z4EOOPBX.mjs">
         <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/chunk-42U43NKG.mjs">
-        <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/script_main.B3TYSUU5.mjs">
-        <script type="module" async data-framer-bundle="main" fetchpriority="low" src="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/script_main.B3TYSUU5.mjs"></script>
+        <link rel="modulepreload" fetchpriority="low" href="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/script_main.2IN4HMM7.mjs">
+        <script type="module" async data-framer-bundle="main" fetchpriority="low" src="https://framerusercontent.com/sites/5TxNaNBwjcS511kFhHmdaI/script_main.2IN4HMM7.mjs"></script>
         <div id="svg-templates" style="position: absolute; overflow: hidden; bottom: 0; left: 0; width: 0; height: 0; z-index: 0; contain: strict" aria-hidden="true"></div>
         <!-- Start of bodyEnd -->
         <!-- End of bodyEnd -->
