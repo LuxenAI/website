@@ -1,1 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLUX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 400px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 5rem;
+            font-weight: 100;
+            letter-spacing: 0.5rem;
+            color: #fff;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInGlow 2s ease forwards;
+        }
+
+        @keyframes fadeInGlow {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeIn 2s ease 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .email-form {
+            opacity: 0;
+            animation: fadeIn 2s ease 1s forwards;
+        }
+
+        .email-input {
+            width: 100%;
+            padding: 1rem 0;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 300;
+            outline: none;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .email-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+        }
+
+        .email-input:focus {
+            border-bottom-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .submit-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.8rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+            border-radius: 0;
+            letter-spacing: 0.1rem;
+        }
+
+        .submit-btn:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.6);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .status-message {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 300;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .status-message.show {
+            opacity: 1;
+        }
+
+        .status-message.success {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .status-message.error {
+            color: rgba(255, 100, 100, 0.8);
+        }
+
+        .ambient-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 3.5rem;
+                letter-spacing: 0.3rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambient-glow"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <h1 class="logo">FLUX</h1>
+        <p class="tagline">Wearables to take control of your life</p>
+        
+        <form class="email-form" id="emailForm">
+            <input 
+                type="email" 
+                class="email-input" 
+                id="emailInput"
+                placeholder="Enter your email"
+                required
+            >
+            <div>
+                <button type="submit" class="submit-btn">NOTIFY ME</button>
+            </div>
+            <div class="status-message" id="statusMessage"></div>
+        </form>
+    </div>
+    
+    <script>
+        // Google Apps Script endpoint - you'll need to deploy this
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwPdcA9iJWiy2ozLauiI_nLT5hTmG64a4LbaCJTDa4sK-v0WaVjiscQU2gZqiUidSI/exec';
+        
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = Math.random() * 3 + 1 + 'px';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        async function saveEmail(email) {
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Required for Google Apps Script
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        timestamp: new Date().toISOString(),
+                        source: 'FLUX Landing Page'
+                    })
+                });
+                
+                // Since we're using no-cors, we can't read the response
+                // But we can assume success if no error was thrown
+                return { success: true, message: 'You\'ll be the first to know' };
+            } catch (error) {
+                console.error('Error saving email:', error);
+                return { success: false, message: 'Something went wrong. Please try again.' };
+            }
+        }
+        
+        function showStatus(message, isSuccess) {
+            const statusEl = document.getElementById('statusMessage');
+            statusEl.textContent = message;
+            statusEl.className = `status-message ${isSuccess ? 'success' : 'error'} show`;
+            
+            setTimeout(() => {
+                statusEl.classList.remove('show');
+            }, 3000);
+        }
+        
+        document.getElementById('emailForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const emailInput = document.getElementById('emailInput');
+            const submitBtn = document.querySelector('.submit-btn');
+            const email = emailInput.value.trim();
+            
+            if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showStatus('Invalid email', false);
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.textContent = 'SENDING...';
+            submitBtn.disabled = true;
+            
+            const result = await saveEmail(email);
+            showStatus(result.message, result.success);
+            
+            if (result.success) {
+                emailInput.value = '';
+            }
+            
+            // Reset button
+            submitBtn.textContent = 'NOTIFY ME';
+            submitBtn.disabled = false;
+        });
+        
+        // Initialize
+        createParticles();
+        
+        // Subtle cursor interaction
+        document.addEventListener('mousemove', function(e) {
+            const glow = document.querySelector('.ambient-glow');
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            glow.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(255, 255, 255, 0.05) 0%, transparent 70%)`;
+        });
+    </script>
+</body>
+</html>
