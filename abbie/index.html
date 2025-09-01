@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>abbie — Autonomous A/B testing that optimizes itself.</title>
+<meta name="description" content="abbie designs variants, launches experiments, reallocates traffic with Bayesian bandits, and reports true lift—no spreadsheets, no manual setup." />
+<meta property="og:title" content="abbie — Autonomous A/B testing that optimizes itself." />
+<meta property="og:description" content="abbie designs variants, launches experiments, reallocates traffic with Bayesian bandits, and reports true lift—no spreadsheets, no manual setup." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%232563EB'/%3E%3Cstop offset='1' stop-color='%23A78BFA'/%3E%3C/linearGradient%3E%3Crect x='8' y='8' width='48' height='48' rx='14' fill='url(%23g)'/%3E%3Cpath fill='%230B1220' d='M21 38c0-8 6-14 14-14h8v6h-7c-4 0-7 3-7 7v5h-8zM29 38c0-4 3-7 7-7h7v14h-7c-4 0-7-3-7-7z'/%3E%3C/svg%3E" />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--bg-light:#F8FAFC;--bg-dark:#0B0F14;--surface-light:#FFFFFF;--surface-dark:#0F172A;--text-light:#0B1220;--text-dark:#E5E7EB;--muted-light:#475569;--muted-dark:#94A3B8;--primary:#2563EB;--accentA:#22D3EE;--accentB:#A78BFA;--success:#10B981;--error:#EF4444;--wash:linear-gradient(120deg,#22D3EE,#A78BFA);--nano-dot-opacity:0.04;--nano-noise-opacity:0.05;--nano-wash-opacity:0.06;--r12:12px;--r16:16px;--r24:24px;--dur-xs:160ms;--dur-s:220ms;--dur-m:320ms;--dur-l:420ms;--ease-out:cubic-bezier(0.22,1,0.36,1);--ease-in:cubic-bezier(0.12,0,0.39,0)}
+html{color-scheme:light dark}
+body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji;background:var(--bg-light);color:var(--text-light)}
+.dark body{background:var(--bg-dark);color:var(--text-dark)}
+.nano{position:relative}
+.nano:before{content:"";position:absolute;inset:0;background:radial-gradient(120% 120% at 50% 0%,rgba(0,0,0,0) 0%,rgba(0,0,0,0) 60%)}
+.dark .nano:before{background:radial-gradient(120% 120% at 50% 0%,rgba(255,255,255,0.04) 0%,rgba(0,0,0,0) 60%)}
+.nano-dots{position:absolute;inset:0;pointer-events:none;opacity:var(--nano-dot-opacity);color:#0EA5E933;background:repeating-radial-gradient(circle at center,currentColor 0 .5px,transparent .5px 10px)}
+.dark .nano-dots{color:#93C5FD}
+.nano-noise{position:absolute;inset:0;pointer-events:none;opacity:var(--nano-noise-opacity);background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAABAAAAARAAAAAAAWm7GAAAACXBIWXMAAAsSAAALEgHS3X78AAAAGElEQVQ4y2NgGAWjYBSM4T8GxjEGQw0wAABcCwR1Kj8p5QAAAABJRU5ErkJggg==);background-size:64px 64px}
+.nano-wash{position:absolute;inset:0;pointer-events:none;opacity:var(--nano-wash-opacity);background:conic-gradient(from 180deg,#22D3EE 0deg,transparent 120deg,#A78BFA 240deg,transparent 360deg)}
+.glow{position:fixed;width:28rem;height:28rem;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:9999px;background:radial-gradient(closest-side,rgba(37,99,235,.22),transparent);filter:blur(26px);mix-blend-mode:multiply;opacity:.45;pointer-events:none;transition:opacity var(--dur-m) var(--ease-out)}
+.dark .glow{opacity:.35}
+.progress{position:fixed;top:0;left:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--primary),var(--accentB));z-index:50}
+.focus-ring:focus-visible{outline:3px solid color-mix(in oklab, var(--primary) 55%, transparent);outline-offset:2px}
+.card{background:rgba(255,255,255,.7);backdrop-filter:saturate(120%) blur(6px)}
+.dark .card{background:rgba(255,255,255,.06)}
+@media (min-resolution: 2dppx){.nano-dots{opacity:calc(var(--nano-dot-opacity) - .01)}}
+@media (prefers-reduced-motion: reduce){.glow{display:none}}
+</style>
+</head>
+<body>
+<div id="progress" class="progress"></div>
+<div id="glow" class="glow"></div>
+<header class="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-black/30 border-b border-black/5 dark:border-white/10">
+  <div class="max-w-[1200px] mx-auto px-4 h-14 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2 font-extrabold tracking-tight focus-ring"><svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g2" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#22D3EE"/><stop offset="1" stop-color="#A78BFA"/></linearGradient></defs><rect x="8" y="8" width="48" height="48" rx="14" fill="url(#g2)"/><path d="M21 38c0-8 6-14 14-14h8v6h-7c-4 0-7 3-7 7v5h-8zM29 38c0-4 3-7 7-7h7v14h-7c-4 0-7-3-7-7z" fill="#0B1220"/></svg><span>abbie</span></a>
+    <nav class="hidden sm:flex items-center gap-6 text-sm"><a href="#features" class="opacity-80 hover:opacity-100 focus-ring">Features</a><a href="#logos" class="opacity-80 hover:opacity-100 focus-ring">Customers</a><a href="#how" class="opacity-80 hover:opacity-100 focus-ring">How it works</a></nav>
+    <a href="#waitlist" class="focus-ring px-4 h-10 inline-grid place-items-center rounded-xl border border-black/10 dark:border-white/15 bg-[var(--wash)] text-white" style="background:linear-gradient(120deg,#22D3EE,#A78BFA)">Join the waitlist</a>
+  </div>
+</header>
+<main id="top">
+  <section class="nano relative overflow-hidden">
+    <div class="nano-dots"></div>
+    <div class="nano-noise"></div>
+    <div class="nano-wash"></div>
+    <div class="max-w-[1200px] mx-auto px-4 pt-16 pb-12 grid md:grid-cols-2 items-center gap-10">
+      <div class="space-y-6">
+        <h1 class="tracking-tight" style="font-size:clamp(40px,5vw,56px);font-weight:900;line-height:1.1">Autonomous A/B testing that optimizes itself.</h1>
+        <h2 class="text-[clamp(18px,2.2vw,20px)] leading-relaxed text-[var(--muted-light)] dark:text-[var(--muted-dark)]">abbie designs variants, launches experiments, reallocates traffic with Bayesian bandits, and reports true lift—no spreadsheets, no manual setup.</h2>
+        <div class="flex flex-wrap gap-3">
+        </div>
+      </div>
+      <div class="relative">
+        <div class="tilt-wrap">
+          <div class="tilt card rounded-2xl p-6 border border-black/5 dark:border-white/10 shadow-lg">
+            <svg width="480" height="300" viewBox="0 0 480 300" class="w-full h-auto" aria-hidden="true">
+              <defs>
+                <linearGradient id="l1" x1="0" x2="1" y1="0" y2="0"><stop stop-color="#22D3EE"/><stop offset="1" stop-color="#A78BFA"/></linearGradient>
+              </defs>
+              <rect x="0" y="0" width="480" height="300" rx="20" fill="url(#l1)" opacity=".08"/>
+              <g class="icon" stroke="#2563EB" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M60 80 h110" opacity=".5"/>
+                <path d="M60 110 h200" opacity=".5"/>
+                <path d="M60 140 h160" opacity=".5"/>
+                <rect x="60" y="200" width="160" height="36" rx="10" opacity=".9"/>
+                <path d="M360 110 l28 0 l0 28 l-28 0 z"/>
+                <path d="M374 90 l0 20"/>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section id="features" class="py-14">
+    <div class="max-w-[1200px] mx-auto px-4">
+      <h2 class="text-[clamp(24px,3vw,32px)] font-extrabold tracking-tight mb-6">Everything you need</h2>
+      <div class="grid md:grid-cols-4 gap-4">
+        <div class="tilt-wrap"><div class="tilt card rounded-2xl p-6 border border-black/5 dark:border-white/10 shadow-lg"><div class="mb-3 w-9 h-9 grid place-items-center rounded-xl text-white" style="background:linear-gradient(120deg,#22D3EE,#A78BFA)">1</div><h3 class="font-bold mb-1">Auto-generate variants</h3><p class="text-[var(--muted-light)] dark:text-[var(--muted-dark)]">abbie proposes copy/layout changes aligned to your goal.</p></div></div>
+        <div class="tilt-wrap"><div class="tilt card rounded-2xl p-6 border border-black/5 dark:border-white/10 shadow-lg"><div class="mb-3 w-9 h-9 grid place-items-center rounded-xl text-white" style="background:linear-gradient(120deg,#22D3EE,#A78BFA)">2</div><h3 class="font-bold mb-1">Bandit reallocation</h3><p class="text-[var(--muted-light)] dark:text-[var(--muted-dark)]">Bayesian logic shifts traffic in real time to winners.</p></div></div>
+        <div class="tilt-wrap"><div class="tilt card rounded-2xl p-6 border border-black/5 dark:border-white/10 shadow-lg"><div class="mb-3 w-9 h-9 grid place-items-center rounded-xl text-white" style="background:linear-gradient(120deg,#22D3EE,#A78BFA)">3</div><h3 class="font-bold mb-1">Guardrails & QA</h3><p class="text-[var(--muted-light)] dark:text-[var(--muted-dark)]">visual diffs, lighthouse checks, and rollback safety.</p></div></div>
+        <div class="tilt-wrap"><div class="tilt card rounded-2xl p-6 border border-black/5 dark:border-white/10 shadow-lg"><div class="mb-3 w-9 h-9 grid place-items-center rounded-xl text-white" style="background:linear-gradient(120deg,#22D3EE,#A78BFA)">4</div><h3 class="font-bold mb-1">Causal lift reports</h3><p class="text-[var(--muted-light)] dark:text-[var(--muted-dark)]">trustworthy metrics with clear confidence intervals.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10">
+    <div class="max-w-[1200px] mx-auto px-4 grid md:grid-cols-3 gap-4">
+      <div class="rounded-2xl p-6 border border-black/5 dark:border-white/10 card text-center"><div class="text-4xl font-black num" data-target="26">0</div><div class="text-sm opacity-70 mt-1">+26% median lift (30 days)</div></div>
+      <div class="rounded-2xl p-6 border border-black/5 dark:border-white/10 card text-center"><div class="text-4xl font-black num" data-target="10">0</div><div class="text-sm opacity-70 mt-1">&lt;10 min to first test</div></div>
+      <div class="rounded-2xl p-6 border border-black/5 dark:border-white/10 card text-center"><div class="text-4xl font-black">24/7</div><div class="text-sm opacity-70 mt-1">monitoring</div></div>
+    </div>
+  </section>
+
+  <section id="how" class="py-14">
+    <div class="max-w-[1200px] mx-auto px-4 grid md:grid-cols-3 gap-4">
+      <div class="rounded-2xl p-6 border border-black/5 dark:border-white/10 card"><div class="mb-2 text-sm font-semibold">1) Connect your site</div><p class="text-[var(--muted-light)] dark:text-[var(--muted-dark)]">tag + domain verification</p></div>
+      <div class="rounded-2xl p-6 border border-black/5 dark:border-white/10 card"><div class="mb-2 text-sm font-semibold">2) Pick a goal</div><p class="text-[var(--muted-light)] dark:text-[var(--muted-dark)]">signup, purchase, lead</p></div>
+      <div class="rounded-2xl p-6 border border-black/5 dark:border-white/10 card"><div class="mb-2 text-sm font-semibold">3) Activate abbie</div><p class="text-[var(--muted-light)] dark:text-[var(--muted-dark)]">experiments go live; traffic rebalances continuously</p></div>
+    </div>
+  </section>
+
+  <section id="waitlist" class="py-16">
+    <div class="max-w-[820px] mx-auto px-4 text-center">
+      <h3 class="text-[clamp(24px,3vw,32px)] font-extrabold tracking-tight mb-6">Join the waitlist</h3>
+      <div class="rounded-2xl overflow-hidden shadow-lg border border-black/5 dark:border-white/10 card">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfyQsFJzmFdWFdzdVH5wVSM4Ud321ZYvWEbGnhvXnya9rrQYA/viewform?embedded=true"
+          width="100%"
+          height="820"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          loading="lazy"
+          title="abbie waitlist form">
+          Loading…
+        </iframe>
+      </div>
+      <div class="mt-3 text-sm text-[var(--muted-light)] dark:text-[var(--muted-dark)]">No spam. We'll reach out when spots open.</div>
+    </div>
+  </section>
+</main>
+
+<footer class="border-t border-black/5 dark:border-white/10 py-10">
+  <div class="max-w-[1200px] mx-auto px-4 flex items-center justify-between text-sm">
+    <div class="opacity-70">© <span id="year"></span> abbie by Luxen LLC</div>
+    <div class="flex items-center gap-4"><a href="#top" class="opacity-80 hover:opacity-100 focus-ring">Back to top</a></div>
+  </div>
+</footer>
+
+<script type="module">
+import { animate, spring, timeline, stagger } from "https://cdn.jsdelivr.net/npm/motion@10.16.4/dist/motion.mjs";
+
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const year = document.getElementById('year');
+year.textContent = new Date().getFullYear();
+
+const progress = document.getElementById('progress');
+function onScroll(){
+  const s = window.scrollY;
+  const d = document.body.scrollHeight - window.innerHeight;
+  const p = d ? Math.min(1, s / d) : 0;
+  progress.style.transform = `scaleX(${p})`;
+}
+document.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+const cta = document.getElementById('ctaHero');
+cta.addEventListener('click', () => {
+  const target = document.getElementById('waitlist');
+  if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
+
+
+const glow = document.getElementById('glow');
+let gx = window.innerWidth/2, gy = 200;
+let target = [gx, gy];
+let rafId;
+function loop(){
+  gx += (target[0]-gx)*0.16;
+  gy += (target[1]-gy)*0.16;
+  glow.style.transform = `translate(${gx-224}px,${gy-224}px)`;
+  rafId = requestAnimationFrame(loop);
+}
+function move(e){ target=[e.clientX, e.clientY]; }
+if(!prefersReduced){
+  window.addEventListener('pointermove', move, { passive: true });
+  loop();
+  document.addEventListener('visibilitychange', ()=>{ if(document.hidden) cancelAnimationFrame(rafId); else loop(); });
+}
+
+function magnetize(el){
+  if(prefersReduced) return;
+  let rect;
+  el.addEventListener('pointermove',(e)=>{
+    rect = rect || el.getBoundingClientRect();
+    const mx = e.clientX - (rect.left + rect.width/2);
+    const my = e.clientY - (rect.top + rect.height/2);
+    const dist = Math.hypot(mx,my);
+    if(dist < 80){
+      animate(el,{ transform:`translate(${mx*0.08}px,${my*0.08}px) scale(1.03)` },{ duration:.22, easing:"ease-out" });
+    }
+  }, { passive:true });
+  el.addEventListener('pointerleave',()=>{
+    animate(el,{ transform:'translate(0,0) scale(1)' },{ easing: spring({ stiffness:320, damping:40 }) });
+  });
+}
+[...document.querySelectorAll('#ctaHero')].forEach(magnetize);
+
+function tiltify(container){
+  if(prefersReduced) return;
+  const el = container.querySelector('.tilt');
+  let rect;
+  container.addEventListener('pointermove',(e)=>{
+    rect = rect || container.getBoundingClientRect();
+    const px = (e.clientX-rect.left)/rect.width - .5;
+    const py = (e.clientY-rect.top)/rect.height - .5;
+    const rx = (-py*6).toFixed(2);
+    const ry = (px*6).toFixed(2);
+    animate(el,{ transform:`rotateX(${rx}deg) rotateY(${ry}deg)` },{ duration:.16 });
+  },{ passive:true });
+  container.addEventListener('pointerleave',()=>{
+    animate(el,{ transform:'rotateX(0) rotateY(0)' },{ easing: spring({ stiffness:300, damping:30 }) });
+  });
+}
+[...document.querySelectorAll('.tilt-wrap')].forEach(tiltify);
+
+const revealSets = [...document.querySelectorAll('section, .grid')];
+const io = new IntersectionObserver((ents)=>{
+  ents.forEach(ent=>{
+    if(ent.isIntersecting){
+      const kids=[...ent.target.querySelectorAll(':scope > *')];
+      timeline(kids.map(k=>[k,{opacity:[0,1],y:[24,0]},{duration:.32,delay:stagger(0.06),easing:'cubic-bezier(0.22,1,0.36,1)'}]));
+      io.unobserve(ent.target);
+    }
+  });
+},{ threshold:.15 });
+revealSets.forEach(s=>io.observe(s));
+
+function countUp(el, target){
+  const start = performance.now();
+  function step(t){
+    const p = Math.min(1, (t-start)/1200);
+    el.textContent = Math.round(target*p).toLocaleString();
+    if(p<1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+[...document.querySelectorAll('.num')].forEach(n=>countUp(n, parseInt(n.dataset.target,10)||0));
+
+function pathDraw(){
+  document.querySelectorAll('g.icon path').forEach(p=>{
+    const len = p.getTotalLength();
+    p.style.strokeDasharray = len;
+    p.style.strokeDashoffset = len;
+    animate(p,{ strokeDashoffset:[len,0] },{ duration:.34, easing:'cubic-bezier(0.22,1,0.36,1)' });
+  });
+}
+pathDraw();
+</script>
+</body>
+</html>
